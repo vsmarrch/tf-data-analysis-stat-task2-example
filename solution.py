@@ -12,10 +12,10 @@ def solution(p: float, x: np.array) -> tuple:
     # Не меняйте название функции и её аргументы
     alpha = 1 - p
     n = len(x)
-    s_squared = np.var(x)
+    s_squared = np.var(x, ddof=1)
     
-    nom = 23 * (n - 1) * s_squared
-    rv = chi2(df = n - 1)
+    nom = (n - 1) * s_squared
+    rv = chi2(df = 2 * (n - 1))
     left = rv.ppf(1 - alpha / 2)
     right = rv.ppf(alpha / 2)
     
